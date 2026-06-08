@@ -1,0 +1,43 @@
+{
+  "framework": "EU_AI_Act",
+  "version": "2024/1689",
+  "effective_date": "2024-08-01",
+  "rules": [
+    {
+      "id": "EUAIA-Art9",
+      "article": "Article 9",
+      "name": "Risk Management System",
+      "description": "High-risk AI systems shall have a risk management system established, implemented, documented, and maintained. The risk management system shall be a continuous iterative process run throughout the entire lifecycle.",
+      "severity_default": "high",
+      "applies_to_module": ["prompt_injection", "pii_leakage", "hallucination_risk"],
+      "remediation_template": "Establish a documented AI risk management framework covering the full system lifecycle. Define risk categories, severity thresholds, and escalation procedures. Assign ownership and schedule regular review cycles."
+    },
+    {
+      "id": "EUAIA-Art13",
+      "article": "Article 13",
+      "name": "Transparency and Provision of Information",
+      "description": "High-risk AI systems shall be designed and developed in such a way as to ensure that their operation is sufficiently transparent to enable operators to interpret the system's output and use it appropriately.",
+      "severity_default": "medium",
+      "applies_to_module": ["hallucination_risk"],
+      "remediation_template": "Implement confidence scores alongside AI responses. Provide users with clear disclosure that they are interacting with an AI system. Document system capabilities and limitations. Add explainability features for high-stakes decisions."
+    },
+    {
+      "id": "EUAIA-Art15",
+      "article": "Article 15",
+      "name": "Accuracy, Robustness and Cybersecurity",
+      "description": "High-risk AI systems shall be designed and developed in such a way that they achieve an appropriate level of accuracy, robustness and cybersecurity, and that they perform consistently in those respects throughout their lifecycle.",
+      "severity_default": "high",
+      "applies_to_module": ["prompt_injection"],
+      "remediation_template": "Add output filtering to detect and block system prompt content in responses. Implement adversarial input detection using both pattern matching and an LLM-based classifier. Add a secondary validation layer that reviews model outputs before returning them to users. Conduct regular red-team exercises against the deployed system."
+    },
+    {
+      "id": "EUAIA-AnnIII",
+      "article": "Annex III",
+      "name": "Accuracy Requirements for High-Risk AI Systems",
+      "description": "AI systems listed in Annex III (high-risk systems) are subject to strict accuracy and reliability requirements. Systems producing factually incorrect outputs in high-stakes domains may cause significant harm.",
+      "severity_default": "high",
+      "applies_to_module": ["hallucination_risk"],
+      "remediation_template": "Implement a fact-checking layer that validates agent responses against a trusted knowledge base before serving them to users. Add confidence score thresholds: responses below 0.70 confidence should be flagged or withheld pending human review. Consider retrieval-augmented generation (RAG) to ground responses in verified, up-to-date sources. Establish a systematic accuracy evaluation process with regular benchmarking."
+    }
+  ]
+}

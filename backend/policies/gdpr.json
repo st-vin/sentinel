@@ -1,0 +1,52 @@
+{
+  "framework": "GDPR",
+  "version": "2016/679",
+  "effective_date": "2018-05-25",
+  "rules": [
+    {
+      "id": "GDPR-Art5-1c",
+      "article": "Article 5(1)(c)",
+      "name": "Data Minimisation",
+      "description": "Personal data shall be adequate, relevant and limited to what is necessary in relation to the purposes for which they are processed.",
+      "severity_default": "high",
+      "applies_to_module": ["pii_leakage"],
+      "remediation_template": "Remove or anonymise personal data fields that are not strictly necessary for the agent's stated purpose. Review data retention policies and implement automatic purging of unnecessary PII from logs and traces."
+    },
+    {
+      "id": "GDPR-Art5-1e",
+      "article": "Article 5(1)(e)",
+      "name": "Storage Limitation",
+      "description": "Personal data shall be kept in a form which permits identification of data subjects for no longer than is necessary for the purposes for which the personal data are processed.",
+      "severity_default": "medium",
+      "applies_to_module": ["pii_leakage"],
+      "remediation_template": "Implement automated data retention policies. Configure log rotation and deletion schedules. Ensure observability traces containing personal data are purged after the minimum necessary retention period."
+    },
+    {
+      "id": "GDPR-Art22",
+      "article": "Article 22",
+      "name": "Automated Individual Decision-Making",
+      "description": "Data subjects have the right not to be subject to a decision based solely on automated processing, including profiling, which produces legal or similarly significant effects.",
+      "severity_default": "high",
+      "applies_to_module": ["hallucination_risk", "pii_leakage"],
+      "remediation_template": "Ensure that any automated decisions with significant effects on individuals are accompanied by meaningful human oversight. Implement explainability features and provide data subjects with the right to request human review."
+    },
+    {
+      "id": "GDPR-Art25",
+      "article": "Article 25",
+      "name": "Data Protection by Design and by Default",
+      "description": "Implement appropriate technical and organisational measures to implement data protection principles in an effective manner and integrate the necessary safeguards to protect the rights of data subjects.",
+      "severity_default": "medium",
+      "applies_to_module": ["pii_leakage", "prompt_injection"],
+      "remediation_template": "Apply data minimisation at design time. Implement privacy-preserving defaults: only collect and process the minimum necessary data. Add pseudonymisation or anonymisation where feasible. Conduct a Data Protection Impact Assessment (DPIA)."
+    },
+    {
+      "id": "GDPR-Art32",
+      "article": "Article 32",
+      "name": "Security of Processing",
+      "description": "Implement appropriate technical and organisational measures to ensure a level of security appropriate to the risk, including as appropriate: pseudonymisation and encryption; ongoing confidentiality, integrity, availability and resilience; ability to restore availability; regular testing and evaluation.",
+      "severity_default": "critical",
+      "applies_to_module": ["pii_leakage", "prompt_injection"],
+      "remediation_template": "Implement output filtering to prevent PII from appearing in agent responses. Add encryption at rest for any training data or log stores containing personal data. Implement input sanitisation to detect and block prompt injection patterns. Establish regular security testing procedures for the AI system."
+    }
+  ]
+}
