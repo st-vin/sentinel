@@ -17,9 +17,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <span className="text-xs font-normal text-blue-300 ml-1">AI GRC Auditor</span>
           </a>
           <div className="flex items-center gap-6 text-sm">
-            <a href="/history" className="text-blue-200 hover:text-white transition-colors">Audit History</a>
+             <a href="/history" className="text-blue-200 hover:text-white transition-colors">Audit History</a>
+             <a href="/intercept" className="ml-4 text-blue-200 hover:text-white transition-colors">Interception</a>
             <a
-              href="https://github.com/your-org/sentinel"
+              href="https://github.com/st-vin/sentinel"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-200 hover:text-white transition-colors"
