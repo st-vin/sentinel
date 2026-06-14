@@ -41,7 +41,7 @@ dev = [
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["agent*", "api*", "modules*", "output*", "eval*"]
+include = ["agent*", "api*", "modules*", "output*", "eval*", "proxy*", "orchestrator*", "ledger*"]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"

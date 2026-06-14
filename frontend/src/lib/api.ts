@@ -68,6 +68,52 @@ async function apiFetch<T>(path: string, options?: RequestInit): Promise<T> {
   }
   return res.json();
 }
+// Interception API helpers
+export interface InterceptRequest {
+  upstream_llm_url: string;
+  proxy_port?: number;
+  block_on_pii?: boolean;
+  block_on_injection?: boolean;
+}
+
+export interface InterceptResponse {
+  session_id: string;
+  proxy_port: number;
+  proxy_base_url: string;
+  ledger_path: string;
+  started_at: string;
+}
+
+export interface InterceptStatusResponse {
+  session_id: string;
+  status: string;
+  transactions_processed: number;
+  blocked_count: number;
+  redacted_count: number;
+}
+
+export interface LedgerEntry {
+  timestamp: string;
+  verdict: string;
+  reason: string;
+  findings_count: number;
+  payload_digest: string;
+}
+
+export const startInterceptSession = (body: InterceptRequest) =>
+  apiFetch<InterceptResponse>('/api/v1/intercept/session', {
+    method: 'POST',
+    body: JSON.stringify(body),
+  });
+
+export const getInterceptStatus = (id: string) =>
+  apiFetch<InterceptStatusResponse>(`/api/v1/intercept/session/${id}/status`);
+
+export const stopInterceptSession = (id: string) =>
+  apiFetch<{ status: string }>(`/api/v1/intercept/session/${id}`, { method: 'DELETE' });
+
+export const getLedger = (id: string, limit?: number) =>
+  apiFetch<LedgerEntry[]>(`/api/v1/intercept/session/${id}/ledger?limit=${limit || 20}`);
 
 export const api = {
   createAudit: (config: AuditConfig) =>

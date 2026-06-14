@@ -10,6 +10,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from api.routes.audit import router as audit_router
 from api.routes.reports import router as reports_router
+from api.routes.intercept import router as intercept_router
 
 log = structlog.get_logger()
 
@@ -39,6 +40,7 @@ app.add_middleware(
 
 app.include_router(audit_router, prefix="/api/v1")
 app.include_router(reports_router, prefix="/api/v1")
+app.include_router(intercept_router, prefix="/api/v1")
 
 
 @app.get("/health")

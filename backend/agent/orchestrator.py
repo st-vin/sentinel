@@ -287,7 +287,7 @@ class AuditOrchestrator:
                     break
                 except Exception as exc:
                     attempt += 1
-                    retries = context.increment_retry(module_id)
+                    context.increment_retry(module_id)
                     context.record_error("Tool Failure", f"{module_id} attempt {attempt} failed: {exc}")
                     log.error("orchestrator.module_error", module_id=module_id, attempt=attempt, error=str(exc))
                     if attempt > MAX_RETRIES_PER_MODULE:
